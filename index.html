@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meridian Talent — Recruitment &amp; Staffing Agency</title>
+<meta name="description" content="Meridian Talent is a recruitment and staffing agency in Bengaluru. Permanent hiring, contract staffing, executive search and volume hiring — first shortlist in 48 hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   60 / 30 / 10 SYSTEM
+   60  --bone    #F2EFE7  page ground, cards, most surfaces
+   30  --ink     #0F1D17  type, dark sections, nav, footer
+   10  --signal  #FF5B1F  CTAs, active states, key highlights only
+   ============================================================ */
+:root{
+  --bone:#F2EFE7; --bone-2:#E8E4D9; --paper:#FBFAF6;
+  --ink:#0F1D17; --ink-2:#18291F; --ink-3:#24382D;
+  --signal:#FF5B1F; --signal-dk:#E2480F;
+  --muted:#525D57; --muted-on-ink:#A9B5AE;
+  --line:rgba(15,29,23,.14); --line-ink:rgba(242,239,231,.14);
+  --r:18px; --r-lg:28px;
+  --pad:clamp(20px,4vw,56px);
+  --max:1440px;
+  --f-display:"Bricolage Grotesque",system-ui,sans-serif;
+  --f-body:"Inter",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--bone);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;-webkit-user-drag:none;user-select:none;-webkit-user-select:none}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--bone);padding:10px 16px;border-radius:10px;z-index:200}
+.skip:focus{left:8px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.mono{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+.tag{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tag::before{content:"";width:8px;height:8px;background:var(--signal);border-radius:2px}
+.on-ink .tag{color:var(--muted-on-ink)}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;letter-spacing:-.035em;line-height:.95;margin:0}
+h2{font-size:clamp(2.4rem,5.6vw,5rem)}
+h3{font-size:clamp(1.35rem,2vw,1.75rem);letter-spacing:-.02em;line-height:1.1;font-weight:700}
+p{margin:0}
+.lead{font-size:clamp(1.05rem,1.4vw,1.25rem);color:var(--muted);max-width:56ch}
+.on-ink .lead{color:var(--muted-on-ink)}
+
+/* buttons */
+.btn{--h:54px;display:inline-flex;align-items:center;gap:12px;height:var(--h);padding:0 26px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .4s var(--ease),background .3s,color .3s,border-color .3s;white-space:nowrap}
+.btn svg{width:18px;height:18px;transition:transform .4s var(--ease)}
+.btn:hover svg{transform:translateX(4px) rotate(-45deg)}
+.btn-signal{background:var(--signal);color:var(--ink)}
+.btn-signal:hover{background:var(--ink);color:var(--bone)}
+.btn-ink{background:var(--ink);color:var(--bone)}
+.btn-ink:hover{background:var(--signal);color:var(--ink)}
+.btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-ghost:hover{background:var(--ink);color:var(--bone)}
+.on-ink .btn-ghost{border-color:var(--bone);color:var(--bone)}
+.on-ink .btn-ghost:hover{background:var(--bone);color:var(--ink)}
+
+/* wireframe helpers */
+.plus{position:absolute;width:13px;height:13px;pointer-events:none}
+.plus::before,.plus::after{content:"";position:absolute;background:currentColor;opacity:.55}
+.plus::before{left:6px;top:0;width:1px;height:13px}
+.plus::after{top:6px;left:0;height:1px;width:13px}
+
+/* ================= NAV ================= */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;padding:14px var(--pad);transition:transform .5s var(--ease)}
+.nav.hide{transform:translateY(-110%)}
+.nav-in{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:24px;background:rgba(242,239,231,.82);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border:1px solid var(--line);border-radius:999px;padding:8px 8px 8px 22px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--f-display);font-weight:800;font-size:21px;letter-spacing:-.03em}
+.logo svg{width:30px;height:30px}
+.nav-links{display:flex;gap:4px;margin:0 auto;list-style:none;padding:0}
+.nav-links a{display:block;padding:10px 14px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:500;transition:background .25s}
+.nav-links a:hover{background:var(--bone-2)}
+.nav-cta{display:flex;gap:8px}
+.nav-cta .btn{--h:46px;padding:0 20px;font-size:15px}
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:0;background:var(--ink);color:var(--bone);cursor:pointer;margin-left:auto;align-items:center;justify-content:center}
+.burger svg{width:20px;height:20px}
+.mnav{position:fixed;inset:0;background:var(--ink);color:var(--bone);z-index:99;padding:110px var(--pad) 40px;display:flex;flex-direction:column;gap:6px;clip-path:circle(0 at calc(100% - 46px) 40px);transition:clip-path .7s var(--ease);visibility:hidden}
+.mnav.open{clip-path:circle(150% at calc(100% - 46px) 40px);visibility:visible}
+.mnav a.ml{font-family:var(--f-display);font-weight:800;font-size:clamp(2.2rem,9vw,3.4rem);letter-spacing:-.04em;text-decoration:none;line-height:1.15;border-bottom:1px solid var(--line-ink);padding:6px 0}
+.mnav .btn{margin-top:22px;align-self:flex-start}
+@media (max-width:1060px){.nav-links,.nav-cta{display:none}.burger{display:inline-flex}}
+
+/* ================= HERO ================= */
+.hero{position:relative;padding:140px 0 0;min-height:100svh;overflow:hidden}
+.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:calc(100%/12) 120px;mask-image:linear-gradient(180deg,#000 30%,transparent 95%);-webkit-mask-image:linear-gradient(180deg,#000 30%,transparent 95%);opacity:.6}
+.hero-in{position:relative;display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+.hero-copy{grid-column:1/8;padding-bottom:64px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-bottom:28px}
+.hero h1{font-size:clamp(3.1rem,8vw,7.6rem);letter-spacing:-.05em;line-height:.9}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.hero h1 .w>span{display:inline-block}
+.hero h1 em{font-style:normal;color:var(--bone);background:var(--ink);padding:0 .14em;border-radius:.12em;margin-left:-.04em}
+.hero h1 .dot{color:var(--signal)}
+.hero-sub{margin-top:30px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-visual{grid-column:8/13;position:relative;height:min(78vh,700px);perspective:1200px}
+.stage{position:absolute;inset:0;transform-style:preserve-3d}
+.layer{position:absolute;will-change:transform}
+.ph{border-radius:var(--r-lg);overflow:hidden;background:var(--bone-2);box-shadow:0 30px 60px -30px rgba(15,29,23,.45)}
+.ph img{width:100%;height:100%;object-fit:cover}
+.l-main{inset:0}
+.l-main .ph{width:100%;height:100%}
+.l-sec{left:-8%;bottom:4%;width:52%;aspect-ratio:4/3}
+.l-sec .ph{width:100%;height:100%;border:6px solid var(--bone)}
+.l-por{right:-4%;top:0;width:30%;aspect-ratio:1}
+.l-por .ph{width:100%;height:100%;border-radius:50%;border:6px solid var(--bone)}
+.chip{position:absolute;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:12px 16px;box-shadow:0 18px 40px -20px rgba(15,29,23,.35);display:flex;gap:12px;align-items:center;font-size:14px;line-height:1.3;white-space:nowrap}
+.chip b{font-family:var(--f-display);font-size:22px;letter-spacing:-.03em}
+.chip .ic{width:38px;height:38px;border-radius:11px;background:var(--signal);display:grid;place-items:center;flex:none}
+.chip .ic svg{width:20px;height:20px}
+.chip.dark{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+.chip.dark .ic{background:var(--ink-3)}
+.c1{right:4%;bottom:8%}
+.c2{left:2%;top:12%}
+.pulse{width:9px;height:9px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 0 rgba(255,91,31,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(255,91,31,0)}100%{box-shadow:0 0 0 0 rgba(255,91,31,0)}}
+.hero-foot{position:relative;border-top:1px solid var(--line);margin-top:0}
+.hero-foot .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.hf{padding:22px 0;display:flex;gap:12px;align-items:center;font-size:15px;color:var(--muted);border-left:1px solid var(--line);padding-left:22px}
+.hf:first-child{border-left:0;padding-left:0}
+.hf strong{color:var(--ink);font-weight:600}
+@media (max-width:1060px){
+  .hero-copy{grid-column:1/-1;padding-bottom:20px}
+  .hero-visual{grid-column:1/-1;height:min(70vw,520px);margin:10px 0 50px}
+  .l-sec{left:0}.l-por{right:0}
+  .hero-foot .wrap{grid-template-columns:repeat(2,1fr)}
+  .hf:nth-child(3){border-left:0;padding-left:0}
+  .hf:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:620px){
+  .hero{padding-top:112px}
+  .hero-sub{grid-template-columns:1fr}
+  .hero-visual{height:110vw}
+  .l-main{inset:0}
+  .l-sec{width:62%}
+  .l-por{width:36%}
+  .chip{font-size:12.5px;padding:10px 12px}.chip b{font-size:18px}.chip .ic{width:32px;height:32px}
+  .c2{top:auto;bottom:30%;left:auto;right:0}
+  .hero-foot .wrap{grid-template-columns:1fr}
+  .hf{border-left:0!important;padding-left:0!important;border-top:1px solid var(--line)}
+  .hf:first-child{border-top:0}
+}
+
+/* ================= MARQUEE (velocity reel) ================= */
+.reel{background:var(--ink);color:var(--bone);padding:34px 0;overflow:hidden;border-block:1px solid var(--ink)}
+.reel-row{display:flex;white-space:nowrap;will-change:transform}
+.reel-row+.reel-row{margin-top:8px}
+.reel-item{display:inline-flex;align-items:center;gap:38px;padding-right:38px;font-family:var(--f-display);font-weight:800;font-size:clamp(2.6rem,7vw,6rem);letter-spacing:-.045em;line-height:1.05}
+.reel-item .o{color:transparent;-webkit-text-stroke:1.5px var(--bone)}
+.reel-item svg{width:.5em;height:.5em;color:var(--signal);flex:none}
+
+/* ================= SECTION BASE ================= */
+section{position:relative}
+.sec{padding:clamp(90px,12vw,170px) 0}
+.sec-head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-bottom:clamp(44px,6vw,80px);align-items:end}
+.sec-head .t{grid-column:1/8}
+.sec-head .d{grid-column:9/13}
+.sec-head .tag{margin-bottom:22px}
+@media (max-width:900px){.sec-head .t,.sec-head .d{grid-column:1/-1}}
+
+/* ================= SERVICES ================= */
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.svc{position:relative;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 28px 32px;min-height:460px;display:flex;flex-direction:column;overflow:hidden;isolation:isolate;text-decoration:none;transition:color .5s var(--ease)}
+.svc .num{font-family:var(--f-mono);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;transition:color .5s}
+.svc .num svg{width:22px;height:22px;transition:transform .5s var(--ease)}
+.svc h3{margin-top:auto;font-size:clamp(1.6rem,2.3vw,2.2rem)}
+.svc p{margin-top:14px;color:var(--muted);font-size:15.5px;transition:color .5s}
+.svc ul{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+.svc li{font-size:12.5px;font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.04em;border:1px solid var(--line);border-radius:999px;padding:5px 10px;transition:border-color .5s}
+.svc .bg{position:absolute;inset:0;z-index:-1;clip-path:inset(100% 0 0 0);transition:clip-path .7s var(--ease)}
+.svc .bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);transition:transform 1.2s var(--ease)}
+.svc .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,29,23,.35),rgba(15,29,23,.92) 70%)}
+.svc:hover,.svc:focus-visible{color:var(--bone)}
+.svc:hover .bg,.svc:focus-visible .bg{clip-path:inset(0 0 0 0)}
+.svc:hover .bg img{transform:scale(1)}
+.svc:hover p,.svc:hover .num{color:var(--bone-2)}
+.svc:hover li{border-color:var(--line-ink)}
+.svc:hover .num svg{transform:rotate(-45deg);color:var(--signal)}
+@media (max-width:1100px){.svc-grid{grid-template-columns:repeat(2,1fr)}.svc{min-height:400px}}
+@media (max-width:620px){.svc-grid{grid-template-columns:1fr}.svc{min-height:340px}}
+
+/* ================= HORIZONTAL PROCESS ================= */
+.hz{background:var(--ink);color:var(--bone);overflow:hidden}
+.hz-pin{height:100vh;display:flex;flex-direction:column;justify-content:center;padding:100px 0 50px}
+.hz-top{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:40px}
+.hz-top h2{max-width:12ch}
+.hz-prog{width:min(320px,40vw)}
+.hz-prog .bar{height:2px;background:var(--line-ink);margin-top:12px;overflow:hidden;border-radius:2px}
+.hz-prog .bar i{display:block;height:100%;width:100%;background:var(--signal);transform-origin:left;transform:scaleX(0)}
+.hz-prog .mono{display:flex;justify-content:space-between;color:var(--muted-on-ink)}
+.hz-track{display:flex;gap:28px;padding:0 var(--pad);width:max-content;will-change:transform}
+.step{width:min(78vw,860px);height:min(58vh,520px);display:grid;grid-template-columns:1.05fr 1fr;border:1px solid var(--line-ink);border-radius:var(--r-lg);overflow:hidden;background:var(--ink-2);flex:none}
+.step-media{position:relative;overflow:hidden}
+.step-media img{position:absolute;inset:-6% -14%;width:128%;height:112%;object-fit:cover;max-width:none}
+.step-body{padding:clamp(24px,3vw,44px);display:flex;flex-direction:column}
+.step-n{font-family:var(--f-display);font-weight:800;font-size:clamp(4rem,8vw,7rem);line-height:.8;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px var(--signal)}
+.step h3{margin-top:auto;font-size:clamp(1.7rem,2.6vw,2.5rem)}
+.step p{margin-top:14px;color:var(--muted-on-ink);font-size:15.5px}
+.step .meta{margin-top:22px;padding-top:16px;border-top:1px solid var(--line-ink);display:flex;justify-content:space-between;color:var(--muted-on-ink)}
+.step .meta b{color:var(--signal);font-weight:500}
+.step-end{width:min(60vw,520px);display:flex;flex-direction:column;justify-content:center;gap:24px;padding:0 20px;flex:none}
+.step-end h3{font-size:clamp(2rem,3.4vw,3.2rem);font-weight:800;letter-spacing:-.04em}
+@media (max-width:900px){
+  .hz-pin{height:auto;padding:90px 0}
+  .hz-top{flex-direction:column;align-items:flex-start}
+  .hz-prog{display:none}
+  .hz-scroller{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .hz-scroller::-webkit-scrollbar{display:none}
+  .hz-track{transform:none!important}
+  .step{scroll-snap-align:center;width:84vw;height:auto;grid-template-columns:1fr;grid-template-rows:220px auto}
+  .step-body{min-height:300px}
+  .step-end{width:80vw}
+}
+
+/* ================= INDUSTRIES ================= */
+.ind{background:var(--bone)}
+.ind-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.ind-row{position:relative;display:grid;grid-template-columns:90px 1fr auto 60px;gap:24px;align-items:center;padding:28px 0;border-bottom:1px solid var(--line);cursor:default;transition:padding .5s var(--ease)}
+.ind-row .i{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.ind-row h3{font-size:clamp(1.9rem,4.4vw,4rem);font-weight:800;letter-spacing:-.045em;transition:transform .6s var(--ease)}
+.ind-row .roles{font-size:15px;color:var(--muted);text-align:right;max-width:34ch}
+.ind-row .arr{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:background .4s,border-color .4s,transform .5s var(--ease)}
+.ind-row .arr svg{width:20px;height:20px}
+.ind-row::before{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleY(0);transform-origin:bottom;transition:transform .5s var(--ease);z-index:-1}
+.ind-list{position:relative;z-index:0}
+@media (hover:hover){
+  .ind-row:hover{padding-left:24px;padding-right:24px;color:var(--bone)}
+  .ind-row:hover::before{transform:scaleY(1)}
+  .ind-row:hover .i,.ind-row:hover .roles{color:var(--muted-on-ink)}
+  .ind-row:hover .arr{background:var(--signal);border-color:var(--signal);color:var(--ink);transform:rotate(-45deg)}
+}
+.cursor-img{position:fixed;left:0;top:0;width:300px;aspect-ratio:4/5;border-radius:20px;overflow:hidden;pointer-events:none;z-index:50;opacity:0;visibility:hidden;transform:translate(-50%,-50%);box-shadow:0 30px 60px -20px rgba(0,0,0,.5);will-change:transform,opacity}
+.cursor-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s}
+.cursor-img img.on{opacity:1}
+@media (max-width:900px){.ind-row{grid-template-columns:44px 1fr 44px}.ind-row .roles{display:none}.ind-row .arr{width:44px;height:44px}.cursor-img{display:none}}
+
+/* ================= PARALLAX BAND ================= */
+.band{position:relative;height:clamp(520px,92vh,860px);overflow:hidden;color:var(--bone);display:flex;align-items:flex-end}
+.band-img{position:absolute;inset:-18% 0;will-change:transform}
+.band-img img{width:100%;height:100%;object-fit:cover}
+.band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,29,23,.15) 20%,rgba(15,29,23,.88))}
+.band-in{position:relative;z-index:2;padding-bottom:clamp(50px,7vw,90px);width:100%}
+.band h2{font-size:clamp(2.6rem,7vw,6.6rem);max-width:15ch}
+.band h2 .hl{color:var(--signal)}
+.band-row{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap}
+.band .lead{color:var(--bone-2);max-width:42ch}
+
+/* ================= PROMISES ================= */
+.prom-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.prom{padding:34px 26px 30px 0;border-right:1px solid var(--line);margin-right:26px;display:flex;flex-direction:column;gap:16px}
+.prom:last-child{border-right:0;margin-right:0}
+.prom .big{font-family:var(--f-display);font-weight:800;font-size:clamp(3.6rem,6.5vw,6.2rem);letter-spacing:-.06em;line-height:.85}
+.prom .big sup{font-size:.36em;letter-spacing:-.02em;vertical-align:top;position:relative;top:.25em;margin-left:4px;color:var(--signal-dk)}
+.prom h3{font-size:1.25rem}
+.prom p{color:var(--muted);font-size:15.5px}
+@media (max-width:1000px){.prom-grid{grid-template-columns:repeat(2,1fr)}.prom:nth-child(2){border-right:0;margin-right:0}.prom:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:560px){.prom-grid{grid-template-columns:1fr}.prom{border-right:0;margin-right:0;border-top:1px solid var(--line)}.prom:first-child{border-top:0}}
+
+/* ================= TESTIMONIALS ================= */
+.tst{background:var(--paper);border-block:1px solid var(--line)}
+.tst-in{display:grid;grid-template-columns:4fr 8fr;gap:clamp(30px,5vw,80px)}
+.tst-side{display:flex;flex-direction:column;gap:26px}
+.tst-ctrl{display:flex;gap:10px;margin-top:auto}
+.icon-btn{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;display:grid;place-items:center;cursor:pointer;transition:background .3s,color .3s}
+.icon-btn:hover{background:var(--ink);color:var(--bone)}
+.icon-btn svg{width:20px;height:20px}
+.tst-view{overflow:hidden;position:relative}
+.tst-track{display:flex;transition:transform .8s var(--ease)}
+.quote{flex:0 0 100%;padding-right:10px}
+.quote blockquote{margin:0;font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem,3.2vw,2.9rem);line-height:1.12;letter-spacing:-.03em}
+.quote blockquote::before{content:"“";display:block;font-size:2.4em;line-height:.6;color:var(--signal);margin-bottom:.15em;font-weight:800}
+.quote figcaption{margin-top:32px;display:flex;gap:16px;align-items:center}
+.quote .av{width:52px;height:52px;border-radius:50%;background:var(--ink);color:var(--bone);display:grid;place-items:center;font-family:var(--f-display);font-weight:800}
+.quote .who{font-size:15px;line-height:1.4}
+.quote .who span{color:var(--muted);display:block}
+.tst-dots{display:flex;gap:8px;margin-top:34px}
+.tst-dots button{width:34px;height:4px;border-radius:4px;border:0;background:var(--line);cursor:pointer;padding:0;position:relative}
+.tst-dots button::after{content:"";position:absolute;inset:-14px 0}
+.tst-dots button[aria-current="true"]{background:var(--signal)}
+@media (max-width:900px){.tst-in{grid-template-columns:1fr}}
+
+/* ================= CANDIDATES ================= */
+.cand-in{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:center}
+.cand-gallery{grid-column:1/7;position:relative;height:clamp(460px,52vw,700px)}
+.cg{position:absolute;border-radius:var(--r-lg);overflow:hidden;will-change:transform;box-shadow:0 30px 60px -30px rgba(15,29,23,.45)}
+.cg img{width:100%;height:100%;object-fit:cover}
+.cg1{left:0;top:6%;width:46%;height:70%}
+.cg2{left:50%;top:0;width:42%;height:52%}
+.cg3{left:38%;bottom:0;width:46%;height:42%;border:6px solid var(--bone)}
+.cg-badge{position:absolute;left:6%;bottom:6%;z-index:3}
+.cand-copy{grid-column:8/13}
+.cand-copy h2{margin:22px 0 24px}
+.role-cloud{display:flex;flex-wrap:wrap;gap:8px;margin:30px 0}
+.role-cloud span{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14.5px;background:var(--paper)}
+.cv-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.cv-form .full{grid-column:1/-1}
+@media (max-width:1000px){.cand-gallery,.cand-copy{grid-column:1/-1}.cand-gallery{height:110vw;max-height:620px}}
+
+/* forms */
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-size:13px;font-weight:600;letter-spacing:.01em}
+.field input,.field select,.field textarea{height:52px;border-radius:14px;border:1.5px solid var(--line);background:var(--paper);padding:0 16px;font-size:16px;transition:border-color .25s,box-shadow .25s;width:100%}
+.field textarea{height:auto;min-height:110px;padding:14px 16px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 4px rgba(255,91,31,.22)}
+.file{position:relative}
+.file input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.file .fake{height:52px;border-radius:14px;border:1.5px dashed rgba(15,29,23,.35);display:flex;align-items:center;gap:10px;padding:0 16px;font-size:15px;color:var(--muted);background:var(--paper)}
+.file .fake svg{width:18px;height:18px;flex:none}
+.file input:focus-visible+.fake{border-color:var(--ink);box-shadow:0 0 0 4px rgba(255,91,31,.22)}
+.form-note{font-size:14.5px;margin-top:6px;min-height:1.4em}
+
+/* ================= CTA / CONTACT ================= */
+.cta{background:var(--ink);color:var(--bone);border-radius:clamp(26px,4vw,48px) clamp(26px,4vw,48px) 0 0;margin-top:20px;overflow:hidden}
+.cta-in{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.cta-copy{grid-column:1/6}
+.cta-copy h2{font-size:clamp(2.8rem,6.4vw,6rem);margin:22px 0 26px}
+.cta-copy h2 .hl{color:var(--signal)}
+.contact-list{margin-top:44px;display:grid;gap:0;border-top:1px solid var(--line-ink)}
+.contact-list div{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line-ink);font-size:15.5px}
+.contact-list span{color:var(--muted-on-ink)}
+.brief{grid-column:7/13;background:var(--bone);color:var(--ink);border-radius:var(--r-lg);padding:clamp(24px,3.4vw,44px);display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:start}
+.brief .full{grid-column:1/-1}
+.brief h3{grid-column:1/-1;margin-bottom:6px}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg label{border:1.5px solid var(--line);border-radius:999px;padding:10px 16px;font-size:14.5px;font-weight:500;cursor:pointer;transition:all .25s;background:var(--paper)}
+.seg input:checked+label{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+.seg input:focus-visible+label{outline:2px solid var(--signal);outline-offset:2px}
+@media (max-width:1000px){.cta-copy,.brief{grid-column:1/-1}}
+@media (max-width:560px){.brief,.cv-form{grid-template-columns:1fr}}
+
+/* ================= FOOTER ================= */
+.foot{background:var(--ink);color:var(--bone);padding:0 0 30px;overflow:hidden}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;padding:70px 0 50px;border-top:1px solid var(--line-ink)}
+.foot h4{font-family:var(--f-mono);font-weight:400;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-on-ink);margin:0 0 16px}
+.foot ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.foot a{text-decoration:none;color:var(--bone-2);transition:color .2s}
+.foot a:hover{color:var(--signal)}
+.foot .lead{font-size:16px}
+.wordmark{font-family:var(--f-display);font-weight:800;font-size:clamp(4rem,17.5vw,17rem);letter-spacing:-.07em;line-height:.8;white-space:nowrap;color:transparent;-webkit-text-stroke:1.5px rgba(242,239,231,.35);margin:10px 0 30px;user-select:none}
+.wordmark span{color:var(--signal);-webkit-text-stroke:0}
+.foot-bot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--muted-on-ink);font-size:14px;border-top:1px solid var(--line-ink);padding-top:24px}
+@media (max-width:900px){.foot-top{grid-template-columns:1fr 1fr}.foot-top>div:first-child{grid-column:1/-1}}
+
+/* reveal fallback: visible by default; JS adds .js to animate */
+.js [data-reveal]{opacity:0;transform:translateY(40px)}
+@media (prefers-reduced-motion:reduce){
+  .js [data-reveal]{opacity:1;transform:none}
+  *{animation:none!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="logo" href="#top" aria-label="Meridian Talent home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#0F1D17"/><path d="M8 23V9l8 9 8-9v14" fill="none" stroke="#F2EFE7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="25" r="2.2" fill="#FF5B1F"/></svg>
+      Meridian
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#why">Why us</a></li>
+        <li><a href="#candidates">Candidates</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="#candidates">Find a job</a>
+      <a class="btn btn-signal" href="#contact">Hire talent
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+    </button>
+  </div>
+</header>
+<div class="mnav" id="mnav" aria-hidden="true">
+  <a class="ml" href="#services">Services</a>
+  <a class="ml" href="#process">Process</a>
+  <a class="ml" href="#industries">Industries</a>
+  <a class="ml" href="#why">Why us</a>
+  <a class="ml" href="#candidates">Candidates</a>
+  <a class="btn btn-signal" href="#contact">Hire talent
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div>
+
+<main id="main">
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <div class="hero-meta">
+        <span class="tag">Recruitment &amp; staffing</span>
+        <span class="mono" style="color:var(--muted)">Bengaluru · Pan-India</span>
+      </div>
+      <h1 id="heroTitle">Hire the people your <em>next&nbsp;quarter</em> depends&nbsp;on<span class="dot">.</span></h1>
+      <div class="hero-sub">
+        <p class="lead">Permanent hiring, contract staffing and executive search for teams that can't afford a bad hire. Screened shortlists in 48 hours, every hire backed by a 90-day replacement guarantee.</p>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn btn-ink" href="#contact">Share a hiring brief
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#process">See how we hire</a>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="stage" id="stage">
+        <div class="layer l-main" data-depth="0.25"><div class="ph"><img src="img/hero-office.jpg" alt="" fetchpriority="high"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-foot">
+    <div class="wrap">
+      <div class="hf"><strong>Permanent</strong> hiring</div>
+      <div class="hf"><strong>Contract</strong> &amp; temp staffing</div>
+      <div class="hf"><strong>Executive</strong> search</div>
+      <div class="hf"><strong>Volume</strong> &amp; campus hiring</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VELOCITY REEL ============ -->
+<section class="reel" aria-label="Roles we hire for">
+  <div class="reel-row" data-dir="1">
+    <div class="reel-item">Engineers <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg> <span class="o">Sales leaders</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg> Finance <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg> <span class="o">Nurses</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg></div>
+  </div>
+  <div class="reel-row" data-dir="-1">
+    <div class="reel-item"><span class="o">Designers</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg> Plant managers <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg> <span class="o">CXOs</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg> Support teams <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/></svg></div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t" data-reveal>
+        <span class="tag">[01] Services</span>
+        <h2>Four ways to build your team.</h2>
+      </div>
+      <p class="d lead" data-reveal>Whether you need one leader or a hundred people on the floor by Monday, the engagement is shaped around your hiring plan — not ours.</p>
+    </div>
+    <div class="svc-grid">
+      <a class="svc" href="#contact" data-reveal>
+        <div class="bg" aria-hidden="true"><img src="img/team.jpg" alt="" loading="lazy"></div>
+        <span class="num">01 / Permanent <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3>Permanent recruitment</h3>
+        <p>Full-time hires from junior to senior management, sourced, screened and interview-ready.</p>
+        <ul><li>Mid–senior</li><li>Niche skills</li></ul>
+      </a>
+      <a class="svc" href="#contact" data-reveal>
+        <div class="bg" aria-hidden="true"><img src="img/source.jpg" alt="" loading="lazy"></div>
+        <span class="num">02 / Contract <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3>Contract &amp; temp staffing</h3>
+        <p>Flexible talent on our payroll — compliance, payroll and attendance handled end to end.</p>
+        <ul><li>C2H</li><li>Project teams</li><li>Payroll</li></ul>
+      </a>
+      <a class="svc" href="#contact" data-reveal>
+        <div class="bg" aria-hidden="true"><img src="img/brief.jpg" alt="" loading="lazy"></div>
+        <span class="num">03 / Executive <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3>Executive search</h3>
+        <p>Confidential, research-led search for CXO, VP and board-level roles.</p>
+        <ul><li>Confidential</li><li>Leadership</li></ul>
+      </a>
+      <a class="svc" href="#contact" data-reveal>
+        <div class="bg" aria-hidden="true"><img src="img/onboard.jpg" alt="" loading="lazy"></div>
+        <span class="num">04 / Volume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <h3>RPO &amp; volume hiring</h3>
+        <p>Dedicated recruiters embedded with your team for ramp-ups, new sites and campus drives.</p>
+        <ul><li>RPO</li><li>Campus</li><li>Bulk</li></ul>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HORIZONTAL PROCESS (side-scroll reel) ============ -->
+<section class="hz on-ink" id="process">
+  <div class="hz-pin" id="hzPin">
+    <div class="wrap hz-top">
+      <div>
+        <span class="tag">[02] Process</span>
+        <h2 style="margin-top:22px">From brief to first day.</h2>
+      </div>
+      <div class="hz-prog" aria-hidden="true">
+        <div class="mono"><span id="hzCount">01</span><span>05</span></div>
+        <div class="bar"><i id="hzBar"></i></div>
+      </div>
+    </div>
+    <div class="hz-scroller">
+      <div class="hz-track" id="hzTrack">
+        <article class="step">
+          <div class="step-media"><img src="img/brief.jpg" alt="Hiring manager briefing a recruiter in a meeting room" loading="lazy"></div>
+          <div class="step-body">
+            <span class="step-n">01</span>
+            <h3>Brief</h3>
+            <p>A 30-minute call to map the role, the team, the must-haves and the deal-breakers. You get a written role scorecard the same day.</p>
+            <div class="meta mono"><span>Day 0</span><b>Scorecard</b></div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="step-media"><img src="img/source.jpg" alt="Recruiter researching candidates on a laptop" loading="lazy"></div>
+          <div class="step-body">
+            <span class="step-n">02</span>
+            <h3>Source</h3>
+            <p>Active and passive search across our network, job boards, referrals and direct headhunting — not just whoever applied.</p>
+            <div class="meta mono"><span>Day 1–2</span><b>Longlist</b></div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="step-media"><img src="img/screen.jpg" alt="Candidate completing a skills assessment on a laptop" loading="lazy"></div>
+          <div class="step-body">
+            <span class="step-n">03</span>
+            <h3>Screen</h3>
+            <p>Three-stage screening: recruiter call, skills assessment, and a structured interview against your scorecard.</p>
+            <div class="meta mono"><span>Day 2</span><b>Shortlist in 48h</b></div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="step-media"><img src="img/interview.jpg" alt="Interview in a bright office" loading="lazy"></div>
+          <div class="step-body">
+            <span class="step-n">04</span>
+            <h3>Interview &amp; offer</h3>
+            <p>We schedule your rounds, collect feedback within 24 hours and handle negotiation so offers get accepted.</p>
+            <div class="meta mono"><span>Week 1–2</span><b>Offer</b></div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="step-media"><img src="img/onboard.jpg" alt="New hires settling into a shared office lounge" loading="lazy"></div>
+          <div class="step-body">
+            <span class="step-n">05</span>
+            <h3>Onboard &amp; guarantee</h3>
+            <p>Check-ins through the first 90 days. If a hire leaves in that window, we replace them at no extra fee.</p>
+            <div class="meta mono"><span>Day 1–90</span><b>Guarantee</b></div>
+          </div>
+        </article>
+        <div class="step-end">
+          <h3>Ready when your team is.</h3>
+          <a class="btn btn-signal" href="#contact" style="align-self:flex-start">Start a brief
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INDUSTRIES ============ -->
+<section class="sec ind" id="industries">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t" data-reveal>
+        <span class="tag">[03] Industries</span>
+        <h2>Specialists, not generalists.</h2>
+      </div>
+      <p class="d lead" data-reveal>Each practice is run by recruiters who've hired for that industry for years — they know the roles, the salary bands and where the good people are.</p>
+    </div>
+    <ul class="ind-list" id="indList">
+      <li class="ind-row" data-img="0" data-reveal><span class="i">01</span><h3>Technology &amp; SaaS</h3><span class="roles">Engineering, product, data, DevOps, QA</span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></li>
+      <li class="ind-row" data-img="1" data-reveal><span class="i">02</span><h3>BFSI &amp; Fintech</h3><span class="roles">Risk, compliance, relationship managers, analysts</span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></li>
+      <li class="ind-row" data-img="2" data-reveal><span class="i">03</span><h3>Healthcare</h3><span class="roles">Nursing, allied health, hospital administration</span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></li>
+      <li class="ind-row" data-img="3" data-reveal><span class="i">04</span><h3>Manufacturing</h3><span class="roles">Plant, quality, supply chain, logistics</span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></li>
+      <li class="ind-row" data-img="4" data-reveal><span class="i">05</span><h3>Retail &amp; E-commerce</h3><span class="roles">Store leadership, category, last-mile ops</span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></li>
+      <li class="ind-row" data-img="5" data-reveal><span class="i">06</span><h3>GCCs &amp; Shared services</h3><span class="roles">Finance ops, HR ops, customer support</span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></li>
+    </ul>
+  </div>
+  <div class="cursor-img" id="cursorImg" aria-hidden="true">
+    <img src="img/team.jpg" alt=""><img src="img/desk.jpg" alt=""><img src="img/focus.jpg" alt=""><img src="img/office.jpg" alt=""><img src="img/onboard.jpg" alt=""><img src="img/hero-office.jpg" alt="">
+  </div>
+</section>
+
+<!-- ============ PARALLAX BAND ============ -->
+<section class="band" aria-label="Our approach">
+  <div class="band-img" id="bandImg"><img src="img/team.jpg" alt="Team collaborating around laptops in a busy office" loading="lazy"></div>
+  <div class="wrap band-in">
+    <div class="band-row">
+      <h2 data-reveal>We don't fill seats. We build <span class="hl">teams that stay.</span></h2>
+      <p class="lead" data-reveal>Every candidate is matched on skills, culture and career direction — because a hire who leaves in six months costs more than the search.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROMISES ============ -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t" data-reveal>
+        <span class="tag">[04] Why us</span>
+        <h2>Promises we put in the contract.</h2>
+      </div>
+      <p class="d lead" data-reveal>No vague "best talent" claims. These are the commitments in every service agreement we sign.</p>
+    </div>
+    <div class="prom-grid">
+      <div class="prom" data-reveal><span class="big"><span data-count="48">48</span><sup>hrs</sup></span><h3>First shortlist</h3><p>Screened, interview-ready profiles within two working days of the brief.</p></div>
+      <div class="prom" data-reveal><span class="big"><span data-count="3">3</span><sup>stage</sup></span><h3>Screening</h3><p>Recruiter call, skills assessment and structured interview before you see anyone.</p></div>
+      <div class="prom" data-reveal><span class="big"><span data-count="90">90</span><sup>days</sup></span><h3>Replacement guarantee</h3><p>If a placed hire leaves within 90 days, we replace them at no additional fee.</p></div>
+      <div class="prom" data-reveal><span class="big"><span data-count="1">1</span><sup>contact</sup></span><h3>Account manager</h3><p>One accountable person for every role, every update, every invoice.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<!-- TEMPLATE NOTE: replace these sample quotes with real, approved client testimonials before going live. -->
+<section class="sec tst" aria-label="Client testimonials">
+  <div class="wrap tst-in">
+    <div class="tst-side" data-reveal>
+      <span class="tag">[05] Clients</span>
+      <h2 style="font-size:clamp(2.2rem,4.2vw,3.8rem)">What hiring managers say.</h2>
+      <div class="tst-ctrl">
+        <button class="icon-btn" id="tPrev" aria-label="Previous testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <button class="icon-btn" id="tNext" aria-label="Next testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div data-reveal>
+      <div class="tst-view" aria-live="polite">
+        <div class="tst-track" id="tTrack">
+          <figure class="quote" aria-roledescription="slide" aria-label="1 of 3">
+            <blockquote>We needed twelve engineers for a new product line in one quarter. The shortlists were tight, and every one of them knew exactly what we were building.</blockquote>
+            <figcaption><span class="av" aria-hidden="true">E</span><span class="who"><strong>VP Engineering</strong><span>B2B SaaS company · Bengaluru</span></span></figcaption>
+          </figure>
+          <figure class="quote" aria-roledescription="slide" aria-label="2 of 3">
+            <blockquote>Contract staffing used to mean chasing payroll and attendance. Now it's one invoice and one person to call.</blockquote>
+            <figcaption><span class="av" aria-hidden="true">O</span><span class="who"><strong>Head of Operations</strong><span>E-commerce logistics · Pan-India</span></span></figcaption>
+          </figure>
+          <figure class="quote" aria-roledescription="slide" aria-label="3 of 3">
+            <blockquote>The search for our CFO was handled with total discretion. We met four finalists and hired the second.</blockquote>
+            <figcaption><span class="av" aria-hidden="true">F</span><span class="who"><strong>Founder &amp; CEO</strong><span>Fintech startup · Mumbai</span></span></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="tst-dots" id="tDots" role="group" aria-label="Choose testimonial"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CANDIDATES ============ -->
+<section class="sec" id="candidates">
+  <div class="wrap cand-in">
+    <div class="cand-gallery" aria-hidden="true">
+      <div class="cg cg1" data-speed="-0.12"><img src="img/cand-1.jpg" alt="" loading="lazy"></div>
+      <div class="cg cg2" data-speed="0.1"><img src="img/cand-3.jpg" alt="" loading="lazy"></div>
+      <div class="cg cg3" data-speed="-0.2"><img src="img/cand-2.jpg" alt="" loading="lazy"></div>
+      <div class="chip cg-badge"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0F1D17" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><span><b>Free</b><br>for job seekers, always</span></div>
+    </div>
+    <div class="cand-copy">
+      <span class="tag" data-reveal>[06] For candidates</span>
+      <h2 data-reveal>Your next role, without the noise.</h2>
+      <p class="lead" data-reveal>Send your CV once. A recruiter who knows your field calls you back, tells you honestly where you fit, and only puts you forward for roles you've said yes to.</p>
+      <div class="role-cloud" data-reveal>
+        <span>Software engineering</span><span>Sales &amp; BD</span><span>Finance &amp; accounts</span><span>Nursing</span><span>Operations</span><span>HR</span><span>Customer support</span><span>Leadership</span>
+      </div>
+      <form class="cv-form" id="cvForm" novalidate data-reveal>
+        <div class="field"><label for="cvName">Full name</label><input id="cvName" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="cvPhone">Phone</label><input id="cvPhone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="field full"><label for="cvFile">Your CV</label>
+          <div class="file"><input id="cvFile" name="cv" type="file" accept=".pdf,.doc,.docx"><span class="fake" id="cvFake"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg>Upload PDF or Word (max 5 MB)</span></div>
+        </div>
+        <div class="full" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+          <button class="btn btn-ink" type="submit">Submit CV
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <p class="form-note" id="cvNote" role="status"></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA / CONTACT ============ -->
+<section class="sec cta on-ink" id="contact">
+  <div class="wrap cta-in">
+    <div class="cta-copy">
+      <span class="tag" data-reveal>[07] Hire with us</span>
+      <h2 data-reveal>Tell us who you <span class="hl">need.</span></h2>
+      <p class="lead" data-reveal>Share the brief and an account manager will call you within one working day with a hiring plan and timeline.</p>
+      <div class="contact-list" data-reveal>
+        <div><span>Email</span><a href="mailto:hello@meridiantalent.in">hello@meridiantalent.in</a></div>
+        <div><span>Phone</span><a href="tel:+910000000000">+91 00000 00000</a></div>
+        <div><span>Office</span><span style="color:var(--bone)">[Office address], Bengaluru</span></div>
+        <div><span>Hours</span><span style="color:var(--bone)">Mon–Sat · 9:30–18:30 IST</span></div>
+      </div>
+    </div>
+    <form class="brief" id="briefForm" novalidate data-reveal>
+      <h3>Hiring brief</h3>
+      <div class="field"><label for="bName">Your name</label><input id="bName" autocomplete="name" required></div>
+      <div class="field"><label for="bCo">Company</label><input id="bCo" autocomplete="organization" required></div>
+      <div class="field"><label for="bEmail">Work email</label><input id="bEmail" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="bPhone">Phone</label><input id="bPhone" type="tel" autocomplete="tel"></div>
+      <div class="field full">
+        <span style="font-size:13px;font-weight:600" id="segLbl">What do you need?</span>
+        <div class="seg" role="radiogroup" aria-labelledby="segLbl" style="margin-top:7px">
+          <input type="radio" name="svc" id="s1" checked><label for="s1">Permanent</label>
+          <input type="radio" name="svc" id="s2"><label for="s2">Contract</label>
+          <input type="radio" name="svc" id="s3"><label for="s3">Executive</label>
+          <input type="radio" name="svc" id="s4"><label for="s4">Volume / RPO</label>
+        </div>
+      </div>
+      <div class="field"><label for="bRole">Role(s)</label><input id="bRole" placeholder="e.g. Senior Java Developer"></div>
+      <div class="field"><label for="bCount">Headcount</label>
+        <select id="bCount"><option>1</option><option>2–5</option><option>6–20</option><option>21–50</option><option>50+</option></select>
+      </div>
+      <div class="field full"><label for="bMsg">Anything else?</label><textarea id="bMsg" placeholder="Location, budget, timeline…"></textarea></div>
+      <div class="full" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+        <button class="btn btn-signal" type="submit">Send brief
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <p class="form-note" id="bNote" role="status"></p>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="logo" href="#top" style="color:var(--bone)"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#F2EFE7"/><path d="M8 23V9l8 9 8-9v14" fill="none" stroke="#0F1D17" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="25" r="2.2" fill="#FF5B1F"/></svg>Meridian Talent</a>
+        <p class="lead" style="margin-top:16px;max-width:36ch">Recruitment and staffing for teams across India, from Bengaluru.</p>
+      </div>
+      <div><h4>Services</h4><ul><li><a href="#services">Permanent recruitment</a></li><li><a href="#services">Contract staffing</a></li><li><a href="#services">Executive search</a></li><li><a href="#services">RPO &amp; volume</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#process">Process</a></li><li><a href="#industries">Industries</a></li><li><a href="#why">Why us</a></li><li><a href="#candidates">Candidates</a></li></ul></div>
+      <div><h4>Connect</h4><ul><li><a href="https://www.linkedin.com/">LinkedIn</a></li><li><a href="https://www.instagram.com/">Instagram</a></li><li><a href="mailto:hello@meridiantalent.in">Email us</a></li></ul></div>
+    </div>
+    <div class="wordmark" aria-hidden="true">Meridian<span>.</span></div>
+    <div class="foot-bot"><span>© <span id="yr">2026</span> Meridian Talent. All rights reserved.</span><span>Privacy · Terms</span></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const $ = (s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* ---------- mobile nav ---------- */
+  const burger=$('#burger'), mnav=$('#mnav');
+  function setNav(open){mnav.classList.toggle('open',open);mnav.setAttribute('aria-hidden',!open);burger.setAttribute('aria-expanded',open);burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+    burger.innerHTML=open?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>';}
+  burger.addEventListener('click',()=>setNav(!mnav.classList.contains('open')));
+  $$('a',mnav).forEach(a=>a.addEventListener('click',()=>setNav(false)));
+
+  /* ---------- testimonials ---------- */
+  const track=$('#tTrack'), slides=$$('.quote',track), dots=$('#tDots'); let ti=0;
+  slides.forEach((_,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Testimonial '+(i+1));b.addEventListener('click',()=>goT(i));dots.appendChild(b);});
+  function goT(i){ti=(i+slides.length)%slides.length;track.style.transform=`translateX(${-100*ti}%)`;$$('button',dots).forEach((b,j)=>b.setAttribute('aria-current',j===ti));slides.forEach((s,j)=>s.setAttribute('aria-hidden',j!==ti));}
+  $('#tPrev').addEventListener('click',()=>goT(ti-1)); $('#tNext').addEventListener('click',()=>goT(ti+1)); goT(0);
+
+  /* ---------- forms (front-end only; wire to your backend/CRM) ---------- */
+  const cvFile=$('#cvFile'), cvFake=$('#cvFake');
+  cvFile.addEventListener('change',()=>{const f=cvFile.files[0]; if(f){cvFake.lastChild.textContent=' '+f.name;}});
+  function handle(form,note,fields){
+    form.addEventListener('submit',e=>{e.preventDefault();
+      const missing=fields.filter(id=>!$('#'+id).value.trim());
+      const email=form.querySelector('input[type=email]');
+      if(missing.length){note.style.color='inherit';note.textContent='Please fill in the required fields.';$('#'+missing[0]).focus();return;}
+      if(email && !/^\S+@\S+\.\S+$/.test(email.value)){note.textContent='Please enter a valid email.';email.focus();return;}
+      note.textContent='Thanks — details captured. Connect this form to your inbox or CRM to receive submissions.';
+    });
+  }
+  handle($('#cvForm'),$('#cvNote'),['cvName','cvPhone']);
+  handle($('#briefForm'),$('#bNote'),['bName','bCo','bEmail']);
+
+  /* ---------- nav hide on scroll down ---------- */
+  let lastY=0; const nav=$('#nav');
+  window.addEventListener('scroll',()=>{const y=window.scrollY; nav.classList.toggle('hide',y>lastY&&y>400&&!mnav.classList.contains('open')); lastY=y;},{passive:true});
+
+  if(reduce || !window.gsap || !window.ScrollTrigger) return; // content stays fully visible
+  document.documentElement.classList.add('js');
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ---------- smooth scroll ---------- */
+  let lenis=null;
+  if(window.Lenis){
+    lenis=new Lenis({lerp:.1,smoothWheel:true});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0);
+    $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href'); if(id.length>1&&$(id)){e.preventDefault();lenis.scrollTo(id,{offset:-10});}}));
+  }
+
+  /* ---------- hero intro: split headline into masked words ---------- */
+  const h1=$('#heroTitle');
+  (function split(node){
+    [...node.childNodes].forEach(n=>{
+      if(n.nodeType===3){
+        const frag=document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(part=>{
+          if(!part) return;
+          if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(part));return;}
+          const w=document.createElement('span');w.className='w';const i=document.createElement('span');i.textContent=part;w.appendChild(i);frag.appendChild(w);
+        });
+        n.replaceWith(frag);
+      } else if(n.nodeType===1 && !n.classList.contains('w')){
+        const w=document.createElement('span');w.className='w';n.replaceWith(w);const i=document.createElement('span');i.appendChild(n);w.appendChild(i);
+      }
+    });
+  })(h1);
+  const tl=gsap.timeline({defaults:{ease:'expo.out'}});
+  tl.from('#heroTitle .w>span',{yPercent:110,duration:1.2,stagger:.06})
+    .from('.hero-meta,.hero-sub,.hero-ctas',{y:30,opacity:0,duration:1,stagger:.1},'-=.9')
+    .fromTo('.l-main',{clipPath:'inset(100% 0% 0% 0% round 28px)'},{clipPath:'inset(0% 0% 0% 0% round 28px)',duration:1.4,clearProps:'clipPath'},'-=1.2')
+    .from('.hf',{y:20,opacity:0,duration:.8,stagger:.06},'-=.8');
+
+  /* ---------- 3D parallax: mouse tilt on hero stage ---------- */
+  const stage=$('#stage'), layers=$$('#stage .layer');
+  if(fine){
+    const xs=layers.map(l=>gsap.quickTo(l,'x',{duration:.9,ease:'power3'}));
+    const ys=layers.map(l=>gsap.quickTo(l,'y',{duration:.9,ease:'power3'}));
+    const rx=gsap.quickTo(stage,'rotationX',{duration:1.2,ease:'power3'}), ry=gsap.quickTo(stage,'rotationY',{duration:1.2,ease:'power3'});
+    $('.hero').addEventListener('mousemove',e=>{
+      const nx=e.clientX/innerWidth-.5, ny=e.clientY/innerHeight-.5;
+      layers.forEach((l,i)=>{const d=+l.dataset.depth;xs[i](nx*-40*d);ys[i](ny*-30*d);});
+      rx(ny*-6); ry(nx*8);
+    });
+    $('.hero').addEventListener('mouseleave',()=>{
+      layers.forEach((l,i)=>{xs[i](0);ys[i](0);});
+      rx(0); ry(0);
+    });
+  }
+  /* scroll depth: layers drift apart as you leave the hero */
+  layers.forEach(l=>{gsap.to(l,{yPercent:-28*(+l.dataset.depth),ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});});
+  gsap.to('.hero-copy',{yPercent:-12,opacity:.2,ease:'none',scrollTrigger:{trigger:'.hero',start:'center top',end:'bottom top',scrub:true}});
+
+  /* ---------- velocity scroll reel ---------- */
+  $$('.reel-row').forEach(row=>{
+    const item=row.firstElementChild; for(let i=0;i<3;i++) row.appendChild(item.cloneNode(true));
+    $$('.reel-item',row).forEach((n,i)=>{if(i) n.setAttribute('aria-hidden','true');});
+    const dir=+row.dataset.dir; let x=0, w=item.offsetWidth, boost=0;
+    window.addEventListener('resize',()=>{w=item.offsetWidth;});
+    ScrollTrigger.create({trigger:'.reel',start:'top bottom',end:'bottom top',onUpdate:s=>{boost=gsap.utils.clamp(-14,14,s.getVelocity()/120);}});
+    gsap.ticker.add(()=>{
+      boost*=.92;
+      x-= (1.1 + Math.abs(boost)) * dir * (boost<0?-1:1);
+      if(x<=-w) x+=w; if(x>0) x-=w;
+      row.style.transform=`translate3d(${x}px,0,0) skewX(${(-boost*dir*.6).toFixed(2)}deg)`;
+    });
+  });
+
+  /* ---------- reveals ---------- */
+  ScrollTrigger.batch('[data-reveal]',{start:'top 88%',once:true,onEnter:b=>gsap.to(b,{opacity:1,y:0,duration:1.1,ease:'expo.out',stagger:.08})});
+
+  /* ---------- number counters ---------- */
+  $$('[data-count]').forEach(el=>{const end=+el.dataset.count;const o={v:0};
+    ScrollTrigger.create({trigger:el,start:'top 85%',once:true,onEnter:()=>gsap.to(o,{v:end,duration:1.6,ease:'power3.out',onUpdate:()=>el.textContent=Math.round(o.v)})});});
+
+  /* ---------- side-scroll reel (pinned horizontal process) ---------- */
+  const mm=gsap.matchMedia();
+  mm.add('(min-width: 901px)',()=>{
+    const trackEl=$('#hzTrack'); const dist=()=>trackEl.scrollWidth-innerWidth;
+    const tween=gsap.to(trackEl,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#process',start:'top top',end:()=>'+='+dist(),pin:'#hzPin',scrub:1,invalidateOnRefresh:true,anticipatePin:1,
+      onUpdate:s=>{gsap.set('#hzBar',{scaleX:s.progress});$('#hzCount').textContent=String(Math.min(5,Math.floor(s.progress*5)+1)).padStart(2,'0');}}});
+    $$('.step',trackEl).forEach(st=>{
+      gsap.fromTo($('.step-media img',st),{xPercent:-8},{xPercent:8,ease:'none',scrollTrigger:{trigger:st,containerAnimation:tween,start:'left right',end:'right left',scrub:true}});
+      gsap.from($('.step-n',st),{yPercent:60,opacity:0,ease:'expo.out',duration:1,scrollTrigger:{trigger:st,containerAnimation:tween,start:'left 75%'}});
+    });
+  });
+
+  /* ---------- 3D tilt on service cards ---------- */
+  if(fine){
+    $$('.svc').forEach(c=>{
+      c.style.transformStyle='preserve-3d';
+      c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();const nx=(e.clientX-r.left)/r.width-.5, ny=(e.clientY-r.top)/r.height-.5;
+        gsap.to(c,{rotationY:nx*6,rotationX:-ny*6,transformPerspective:900,duration:.6,ease:'power3'});});
+      c.addEventListener('mouseleave',()=>gsap.to(c,{rotationY:0,rotationX:0,duration:.8,ease:'power3'}));
+    });
+  }
+
+  /* ---------- industries cursor-follow image ---------- */
+  if(fine){
+    const ci=$('#cursorImg'), imgs=$$('img',ci);
+    gsap.set(ci,{xPercent:-50,yPercent:-50,scale:0.7,opacity:0,transformOrigin:'center center'});
+    const qx=gsap.quickTo(ci,'x',{duration:.25,ease:'power2.out'}), qy=gsap.quickTo(ci,'y',{duration:.25,ease:'power2.out'});
+    let isHoveringList=false;
+    let rotTimer=null;
+
+    const hideCursorImg=()=>{
+      if(!isHoveringList && parseFloat(gsap.getProperty(ci,'opacity'))<0.01) return;
+      isHoveringList=false;
+      gsap.to(ci,{opacity:0,scale:0.7,duration:.25,ease:'power2.inOut',overwrite:'auto',onComplete:()=>{ci.style.visibility='hidden';}});
+      gsap.to(ci,{rotation:0,duration:.25,ease:'power2.out',overwrite:'auto'});
+    };
+
+    $$('.ind-row').forEach(r=>{
+      r.addEventListener('mouseenter',e=>{
+        isHoveringList=true;
+        ci.style.visibility='visible';
+        imgs.forEach((im,i)=>im.classList.toggle('on',i==r.dataset.img));
+        if(parseFloat(gsap.getProperty(ci,'opacity'))<0.05){
+          gsap.set(ci,{x:e.clientX,y:e.clientY});
+        }
+        gsap.to(ci,{opacity:1,scale:1,duration:.3,ease:'power2.out',overwrite:'auto'});
+      });
+    });
+
+    $('#indList').addEventListener('mouseleave',hideCursorImg);
+    const indSec=$('#industries');
+    if(indSec) indSec.addEventListener('mouseleave',hideCursorImg);
+    document.addEventListener('mouseleave',hideCursorImg);
+    window.addEventListener('blur',hideCursorImg);
+
+    window.addEventListener('scroll',()=>{
+      if(isHoveringList){
+        hideCursorImg();
+      }
+    },{passive:true});
+
+    window.addEventListener('mousemove',e=>{
+      qx(e.clientX);
+      qy(e.clientY);
+      if(isHoveringList){
+        const dx=e.movementX||0;
+        gsap.to(ci,{rotation:gsap.utils.clamp(-8,8,dx*.4),duration:.2,ease:'power2.out',overwrite:'auto'});
+        clearTimeout(rotTimer);
+        rotTimer=setTimeout(()=>{
+          gsap.to(ci,{rotation:0,duration:.3,ease:'power2.out',overwrite:'auto'});
+        },50);
+      } else {
+        if(parseFloat(gsap.getProperty(ci,'opacity'))>0){
+          hideCursorImg();
+        }
+      }
+    },{passive:true});
+  }
+
+  /* ---------- parallax band ---------- */
+  gsap.fromTo('#bandImg',{yPercent:-12,scale:1.12},{yPercent:12,scale:1,ease:'none',scrollTrigger:{trigger:'.band',start:'top bottom',end:'bottom top',scrub:true}});
+
+  /* ---------- candidate gallery depth parallax ---------- */
+  $$('[data-speed]').forEach(el=>{gsap.fromTo(el,{yPercent:-100*el.dataset.speed},{yPercent:100*el.dataset.speed,ease:'none',scrollTrigger:{trigger:'#candidates',start:'top bottom',end:'bottom top',scrub:true}});});
+
+  /* ---------- footer wordmark slide ---------- */
+  gsap.from('.wordmark',{xPercent:-12,ease:'none',scrollTrigger:{trigger:'.foot',start:'top bottom',end:'bottom bottom',scrub:true}});
+
+  window.addEventListener('load',()=>ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
